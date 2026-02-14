@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "dist/Openf1.d.ts",
   "description": "Plugin for Openf1 API provider",
-  "homepage": "https://github.com/lmscunha/SenecaOpenf1Provider",
+  "homepage": "https://github.com/lmscunha/seneca-openf1-provider",
   "keywords": [
     "seneca",
     "openf1"
@@ -13,7 +13,7 @@
   "author": "Leonardo Cunha - leonardocunha.com",
   "repository": {
     "type": "git",
-    "url": "git://github.com/lmscunha/SenecaOpenf1Provider.git"
+    "url": "git://github.com/lmscunha/seneca-openf1-provider.git"
   },
   "scripts": {
     "prettier": "prettier --write .",
