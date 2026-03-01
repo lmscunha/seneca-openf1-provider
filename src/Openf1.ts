@@ -9,10 +9,12 @@ function Openf1Provider(this: any, options: Openf1ProviderOptions) {
 
   const makeUtils = seneca.export('provider/makeUtils')
 
-  const { makeUrl, getJSON, entityBuilder } = makeUtils({
-    name: 'openf1',
-    url: options.url,
-  })
+  const { makeUrl, getJSON, entityBuilder } =
+    makeUtils &&
+    makeUtils({
+      name: 'openf1',
+      url: options.url,
+    })
 
   seneca.message('sys:provider,provider:openf1,get:info', get_info)
 
@@ -38,7 +40,7 @@ function Openf1Provider(this: any, options: Openf1ProviderOptions) {
                 const json: Session[] = await getJSON(makeUrl('sessions', q))
 
                 return json.map((session: Session) =>
-                  entize(session, session.session_key)
+                  entize(session, session.session_key),
                 )
               },
             },

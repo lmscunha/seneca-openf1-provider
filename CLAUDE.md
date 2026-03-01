@@ -40,6 +40,7 @@ This is a **Seneca microservice plugin** that wraps the [OpenF1 REST API](https:
 ### TypeScript build
 
 Two separate `tsconfig.json` files use TypeScript project references:
+
 - `src/tsconfig.json` — Compiles `src/` → `dist/`
 - `test/` has its own tsconfig (implied by `tsc --build src test`) → `dist-test/`
 
@@ -48,11 +49,13 @@ The module format is **CommonJS** (`"type": "commonjs"` in package.json) with ES
 ### Seneca plugin pattern
 
 The plugin uses `@seneca/provider` utilities via `seneca.export('provider/makeUtils')`, which provides:
+
 - `makeUrl(path)` — Constructs full API URLs from `options.url` base.
 - `getJson(url)` — Fetches JSON from the API.
 - `entityBuilder(seneca, config)` — Wires up Seneca entity CRUD patterns to API calls.
 
 Messages are registered with `seneca.message(pattern, handler)`. The standard info message is:
+
 ```
 sys:provider,provider:openf1,get:info
 ```

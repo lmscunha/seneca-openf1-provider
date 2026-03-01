@@ -1,6 +1,6 @@
 {
   "name": "seneca-openf1-provider",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/Openf1.js",
   "type": "commonjs",
@@ -21,13 +21,12 @@
     "test": "node --enable-source-maps --test \"dist-test/**/*.test.js\"",
     "test-some": "node --enable-source-maps --test-name-pattern=\"$TEST_PATTERN\" --test \"dist-test/**/*.test.js\"",
     "watch": "tsc --build src test -w",
-    "build": "tsc --build src test",
-    "doc": "seneca-doc",
+    "build": "rm -rf dist dist-test && tsc --build src test",
     "clean": "rm -rf dist dist-test node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"` && echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
     "repo-publish": "npm run clean && npm i && npm run repo-publish-quick",
-    "repo-publish-quick": "npm run build && npm run test && npm run doc && npm run repo-tag && npm publish --access public --registry https://registry.npmjs.org "
+    "repo-publish-quick": "npm run build && npm run prettier && npm run test && npm run repo-tag && npm publish --access public --registry https://registry.npmjs.org "
   },
   "license": "MIT",
   "files": [
@@ -40,10 +39,9 @@
   },
   "devDependencies": {
     "@hapi/code": "^9.0.3",
-    "@seneca/doc": "^8.0.0",
     "@seneca/maintain": "^0.1.0",
-    "@seneca/provider": ">=3.1",
-    "@types/node": "^25.2.3",
+    "@seneca/provider": "3.1.0",
+    "@types/node": "^25.3.3",
     "gubu": "^9.0.0",
     "prettier": "3.8.1",
     "seneca-msg-test": "^4.1.0",

@@ -31,7 +31,8 @@ describe('Openf1', () => {
   //   await seneca.ready()
   //
   //   const sessions = await seneca.entity('provider/openf1/session').list$({
-  //     year: 2026, session_type: 'Race',
+  //     year: 2026,
+  //     session_type: 'Race',
   //   })
   //   // console.log('sessions', sessions)
   //
@@ -59,6 +60,10 @@ describe('Openf1', () => {
 
 function makeSeneca() {
   const seneca = Seneca({ legacy: false })
-    .test().use('promisify').use('entity').use('provider').use(Openf1Provider)
+    .test()
+    .use('promisify')
+    .use('entity')
+    .use('provider')
+    .use(Openf1Provider)
   return seneca
 }

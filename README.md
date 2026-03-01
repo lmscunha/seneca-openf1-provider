@@ -57,9 +57,9 @@ Maps to the OpenF1 `/sessions` endpoint.
 
 Fetch a list of sessions. All query fields are optional.
 
-| Query field    | Type     | Description                                  |
-|----------------|----------|----------------------------------------------|
-| `year`         | `number` | Filter by season year (e.g. `2025`, `2026`)  |
+| Query field    | Type     | Description                                                    |
+| -------------- | -------- | -------------------------------------------------------------- |
+| `year`         | `number` | Filter by season year (e.g. `2025`, `2026`)                    |
 | `session_type` | `string` | Filter by type: `'Race'`, `'Qualifying'`, `'Practice 1'`, etc. |
 
 ### Session fields
@@ -67,7 +67,7 @@ Fetch a list of sessions. All query fields are optional.
 Each returned entity includes the following fields from the OpenF1 API:
 
 | Field                | Type     | Description                        |
-|----------------------|----------|------------------------------------|
+| -------------------- | -------- | ---------------------------------- |
 | `session_key`        | `number` | Unique session identifier          |
 | `session_name`       | `string` | Human-readable session name        |
 | `session_type`       | `string` | Session type (Race, Qualifying, …) |
@@ -85,10 +85,10 @@ Each returned entity includes the following fields from the OpenF1 API:
 
 ## Options
 
-| Option  | Default                          | Description            |
-|---------|----------------------------------|------------------------|
-| `url`   | `https://api.openf1.org/v1/`    | Base URL for the API   |
-| `debug` | `false`                          | Enable debug logging   |
+| Option  | Default                      | Description          |
+| ------- | ---------------------------- | -------------------- |
+| `url`   | `https://api.openf1.org/v1/` | Base URL for the API |
+| `debug` | `false`                      | Enable debug logging |
 
 ## License
 
