@@ -1,23 +1,18 @@
 /* Copyright © 2026 Seneca Project Contributors, MIT License. */
 
-const Pkg = require('../package.json')
+import Pkg from '../package.json'
 
-type Openf1ProviderOptions = {
-  url: string
-  // fetch?: any
-  // entity?: Record<string, any>
-  debug: boolean
-}
+import type { Openf1ProviderOptions, SessionQuery, Session } from './Types.js'
 
-function Openf1Provider(this: any, options: any) {
+function Openf1Provider(this: any, options: Openf1ProviderOptions) {
   const seneca: any = this
 
-  // const makeUtils = seneca.export('provider/makeUtils')
-  //
-  // const { makeUrl, getJson, entityBuilder } = makeUtils({
-  //   name: 'openf1',
-  //   options,
-  // })
+  const makeUtils = seneca.export('provider/makeUtils')
+
+  const { makeUrl, getJSON, entityBuilder } = makeUtils({
+    name: 'openf1',
+    url: options.url,
+  })
 
   seneca.message('sys:provider,provider:openf1,get:info', get_info)
 
@@ -29,12 +24,34 @@ function Openf1Provider(this: any, options: any) {
     }
   }
 
+  entityBuilder &&
+    entityBuilder(seneca, {
+      provider: {
+        name: 'openf1',
+      },
+      entity: {
+        session: {
+          cmd: {
+            list: {
+              action: async function (this: any, entize: any, msg: any) {
+                const q: SessionQuery = msg.q || {}
+                const json: Session[] = await getJSON(makeUrl('sessions', q))
+
+                return json.map((session: Session) =>
+                  entize(session, session.session_key)
+                )
+              },
+            },
+          },
+        },
+      },
+    })
+
   seneca.prepare(async function (this: any) {})
 }
 
 const defaults: Openf1ProviderOptions = {
   url: 'https://api.openf1.org/v1/',
-
   debug: false,
 }
 
